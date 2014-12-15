@@ -11,7 +11,7 @@ shopApp.config(function ($routeProvider) {
         controller: 'homeController'
     });
     $routeProvider.when('/login', {
-        templateUrl: 'app/components/home/home.html',
+        templateUrl: 'app/components/login/login.html',
         controller: 'loginController'
     });
     $routeProvider.otherwise({
