@@ -16,15 +16,17 @@ shopApp.controller('loginController', function ($scope, $http) {
             console.log(data);
 
                 if (!data.success) {
+                    if(data.errors) {
 
-                    $scope.errorEmail = data.errors.email;
-                    $scope.errorPassword = data.errors.password;
-
-                } else {
-                    $scope.errorEmail = '';
-                    $scope.errorPassword = '';
-                    $scope.message = data.message;
+                        $scope.errorEmail = data.errors.email;
+                        $scope.errorPassword = data.errors.password;
+                    } else {
+                        $scope.errorEmail = '';
+                        $scope.errorPassword = '';
+                    }
                 }
+
+                $scope.message = data.message;
             });
     };
 });
