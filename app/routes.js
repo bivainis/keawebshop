@@ -14,6 +14,10 @@ shopApp.config(function ($routeProvider) {
         templateUrl: 'app/components/login/login.html',
         controller: 'loginController'
     });
+    $routeProvider.when('/register', {
+        templateUrl: 'app/components/register/register.html',
+        controller: 'registerController'
+    });
     $routeProvider.otherwise({
         redirectTo : '/login'
     });

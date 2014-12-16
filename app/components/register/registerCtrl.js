@@ -1,6 +1,6 @@
 'use strict';
 
-shopApp.controller('loginController', function ($scope, $http) {
+shopApp.controller('registerController', function ($scope, $http) {
 
     $scope.formData = {};
 
@@ -8,7 +8,7 @@ shopApp.controller('loginController', function ($scope, $http) {
 
         $http({
             method: 'POST',
-            url: 'api/auth/login.php',
+            url: 'api/auth/register.php',
             data: $.param($scope.formData),  // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}  // set the headers so angular passing info as form data (not request payload)
 

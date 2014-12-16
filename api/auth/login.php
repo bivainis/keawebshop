@@ -52,18 +52,26 @@ if(!empty($errors)){
 		echo $e->getMessage();
 	}
 
-	$query = 'select * from customers where customer_email=:customerEmail and customer_password=:password';
+	$query = 'select customer_password from customers where customer_email=:customerEmail';
 	$stmt = $dbh->prepare($query);
 	$stmt->bindValue(':customerEmail', $email);
-	$stmt->bindValue(':password', $password);
 	$stmt->execute();
 
 	if($stmt->rowCount() == 1){
-		$data['success'] = true;
-		$data['message'] = 'Success!';
+
+		$hash = $stmt->fetchColumn();
+
+		if (password_verify($password, $hash)) {
+			$data['success'] = true;
+			$data['message'] = 'Success!';
+		} else {
+			$data['success'] = false;
+			$data['message'] = 'Password doesn\'t match, try again';
+		}
+
 	} else {
 		$data['success'] = false;
-		$data['message'] = 'Login failed, try again';
+		$data['message'] = 'Email not found, try again';
 	}
 }
 
