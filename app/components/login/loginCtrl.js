@@ -1,6 +1,6 @@
 'use strict';
 
-shopApp.controller('loginController', function ($scope, $http) {
+shopApp.controller('loginController', ['$scope', '$rootScope', '$http', '$location', function ($scope, $rootScope, $http, $location) {
 
     $scope.formData = {};
 
@@ -28,4 +28,16 @@ shopApp.controller('loginController', function ($scope, $http) {
             $scope.message = data.message;
         });
     };
-});
+
+    $rootScope.$on('$routeChangeStart', function (event, next) {
+
+        var userLoggedIn = false; /* Check if the user is logged in */
+
+        if (!userLoggedIn && !next.isLogin) {
+            /* You can save the user's location to take him back to the same page after he has logged-in */
+            $rootScope.savedLocation = $location.url();
+
+            $location.path('/login');
+        }
+    });
+}]);
