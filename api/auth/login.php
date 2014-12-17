@@ -52,9 +52,9 @@ if(!empty($errors)){
 		echo $e->getMessage();
 	}
 
-	$query = 'select customer_password from customers where customer_email=:customerEmail';
+	$query = 'select partner_password from partners where partner_email=:partnerEmail';
 	$stmt = $dbh->prepare($query);
-	$stmt->bindValue(':customerEmail', $email);
+	$stmt->bindValue(':partnerEmail', $email);
 	$stmt->execute();
 
 	if($stmt->rowCount() == 1){

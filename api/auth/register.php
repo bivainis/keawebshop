@@ -58,9 +58,9 @@ if(!empty($errors)){
 		echo $e->getMessage();
 	}
 
-	$query = 'insert into customers (customer_email, customer_password) values (:customerEmail, :password)';
+	$query = 'insert into partners (partner_email, partner_password) values (:partnerEmail, :password)';
 	$stmt = $dbh->prepare($query);
-	$stmt->bindValue(':customerEmail', $email);
+	$stmt->bindValue(':partnerEmail', $email);
 	$stmt->bindValue(':password', $passHash);
 	$stmt->execute();
 
