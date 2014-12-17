@@ -20,6 +20,10 @@ shopApp.config(function ($routeProvider) {
         templateUrl: 'app/components/register/register.html',
         controller: 'registerController'
     });
+    $routeProvider.when('/logout', {
+        templateUrl: 'app/components/login/logout.html',
+        controller: 'logoutController'
+    });
     $routeProvider.otherwise({
         redirectTo : '/login'
     });
