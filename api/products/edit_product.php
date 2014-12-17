@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+// todo: check if admin and loggedin
+
 require_once '../config.php';
 
 $errors = array();
@@ -58,29 +60,9 @@ $stmt->execute();
 if($stmt->rowCount() == 1){
 	$data['success'] = true;
 	$data['message'] = 'Success!';
-
-	generateJSON($dbh);
 } else {
 	$data['success'] = false;
 	$data['message'] = 'Product adding failed, please try again';
-}
-
-function generateJSON($dbh){
-	$query = 'select product_id, product_name, product_description, product_image, product_price from products';
-
-	$stmt = $dbh->prepare($query);
-	$stmt->execute();
-
-	$arr1 = array();
-	while ($arr = $stmt->fetch(PDO::FETCH_ASSOC)) {
-		$toJSON[] = $arr;
-	}
-
-	$toReturn = array('products'=>$toJSON);
-
-	$fp = fopen('../../products.json', 'w+');
-	fwrite($fp, json_encode($toReturn));
-	fclose($fp);
 }
 
 echo json_encode($data);
