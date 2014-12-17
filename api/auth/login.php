@@ -64,6 +64,8 @@ if(!empty($errors)){
 		if (password_verify($password, $hash)) {
 			$data['success'] = true;
 			$data['message'] = 'Success!';
+			session_start();
+			$_SESSION['loggedin'] = true;
 		} else {
 			$data['success'] = false;
 			$data['message'] = 'Password doesn\'t match, try again';
