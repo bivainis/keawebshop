@@ -52,20 +52,25 @@ if(!empty($errors)){
 		echo $e->getMessage();
 	}
 
-	$query = 'select partner_password from partners where partner_email=:partnerEmail';
+	$query = 'select * from partners where partner_email=:partnerEmail';
 	$stmt = $dbh->prepare($query);
 	$stmt->bindValue(':partnerEmail', $email);
 	$stmt->execute();
 
 	if($stmt->rowCount() == 1){
 
-		$hash = $stmt->fetchColumn();
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		$hash = $row['partner_password'];
 
 		if (password_verify($password, $hash)) {
+
 			$data['success'] = true;
 			$data['message'] = 'Success!';
 			session_start();
 			$_SESSION['loggedin'] = true;
+			$_SESSION['userid'] = $row['partner_id'];
+
 		} else {
 			$data['success'] = false;
 			$data['message'] = 'Password doesn\'t match, try again';

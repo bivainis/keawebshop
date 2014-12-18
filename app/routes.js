@@ -18,7 +18,8 @@ shopApp.config(function ($routeProvider) {
     });
     $routeProvider.when('/register', {
         templateUrl: 'app/components/register/register.html',
-        controller: 'registerController'
+        controller: 'registerController',
+        isLogin: true
     });
     $routeProvider.when('/logout', {
         templateUrl: 'app/components/login/logout.html',

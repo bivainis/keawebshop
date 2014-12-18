@@ -39,13 +39,15 @@ $query = 'insert into products (
 		product_price,
 		product_description,
 		product_image,
-		product_quantity )
+		product_quantity,
+		product_partner_id)
 	values (
 		:name,
 		:price,
 		:description,
 		:image,
-		:quantity)';
+		:quantity,
+		:partnerId)';
 
 $stmt = $dbh->prepare($query);
 $stmt->bindValue(':name', $name);
@@ -53,6 +55,7 @@ $stmt->bindValue(':price', $price);
 $stmt->bindValue(':description', $description);
 $stmt->bindValue(':image', $image);
 $stmt->bindValue(':quantity', $quantity);
+$stmt->bindValue(':partnerId', $_SESSION['userid']);
 $stmt->execute();
 
 if($stmt->rowCount() == 1){
