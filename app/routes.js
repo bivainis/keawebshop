@@ -25,6 +25,11 @@ shopApp.config(function ($routeProvider) {
         templateUrl: 'app/components/login/logout.html',
         controller: 'logoutController'
     });
+    $routeProvider.when('/accounts/delete', {
+        templateUrl: 'app/components/accounts/account_deleted.html',
+        controller: 'accountsController',
+        isLogin : true
+    });
     $routeProvider.otherwise({
         redirectTo : '/login'
     });
