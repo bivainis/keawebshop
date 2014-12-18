@@ -4,6 +4,7 @@ shopApp.controller('homeController', ['$scope', '$http',
     function($scope, $http) {
 
     $scope.formData = {};
+    $scope.products = {};
 
     $scope.processForm = function () {
 
@@ -16,5 +17,13 @@ shopApp.controller('homeController', ['$scope', '$http',
         }).success(function (data) {
             console.log(data);
         });
-    }
+    };
+
+    $http({
+        method: "GET",
+        url: "api/products/list_products.php"
+    }).success(function (response) {
+
+        $scope.products = response.products; //change here
+    })
 }]);

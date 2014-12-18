@@ -14,6 +14,7 @@
             </ul>
         </div>
     </nav>
+    <hr/>
 </div>
 <div class="container-fluid">
     <div class="row">
@@ -37,6 +38,18 @@
                 </div>
                 <button class="btn btn-lg btn-primary">Add product</button>
             </form>
+        </div>
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-4" ng-repeat="product in products">
+                    <img ng-src="{{ product.product_image }}" class="img-responsive" alt=""/>
+                    <h3>{{ product.product_name }}</h3>
+                    <p class="small">{{ product.product_description }}</p>
+                    <p>Price: {{ product.product_price }}DKK</p>
+                    <p>In stock: {{ product.product_quantity }}</p>
+                    <br/>
+                </div>
+            </div>
         </div>
     </div>
 </div>

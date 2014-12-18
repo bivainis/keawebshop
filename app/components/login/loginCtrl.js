@@ -42,7 +42,7 @@ shopApp.controller('loginController', ['$scope', '$rootScope', '$http', '$locati
                 .get('api/auth/get_session.php?loggedin')
                 .success(function (response) {
                     if(response.loggedin == true){
-
+                        $rootScope.loggedIn = true;
                         userLoggedIn = true;
                     } else {
                         if (!next.isLogin) {
