@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2014 at 11:37 PM
+-- Generation Time: Dec 18, 2014 at 11:53 PM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -78,19 +78,19 @@ CREATE TABLE IF NOT EXISTS `partners` (
   `partner_password` varchar(255) NOT NULL,
   `partner_url` varchar(1000) NOT NULL,
   `partner_comission` tinyint(4) NOT NULL DEFAULT '20',
-  `partner_key` varchar(19) NOT NULL,
+  `partner_key` varchar(19) DEFAULT NULL,
   `partner_active` tinyint(1) NOT NULL DEFAULT '0',
   `partner_type` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`partner_id`),
   UNIQUE KEY `partner_key` (`partner_key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `partners`
 --
 
 INSERT INTO `partners` (`partner_id`, `partner_name`, `partner_email`, `partner_password`, `partner_url`, `partner_comission`, `partner_key`, `partner_active`, `partner_type`) VALUES
-(1, 'admin', 'gedemins@gmail.com', 'adminadmin', 'abc.com/webshop', 20, 'jahfdkj', 1, 1),
+(1, 'admin', 'admin@admin.com', 'adminadmin', 'abc.com/webshop', 20, 'jahfdkj', 1, 1),
 (3, '', 'gediminas@bivainis.com', '$2y$10$n2ZjesjRKQV696Q2c.0m6Ok3qUKDQsVR2iIfHx19DniYTdS1x6./i', '', 20, '', 1, 0);
 
 -- --------------------------------------------------------
@@ -117,9 +117,6 @@ CREATE TABLE IF NOT EXISTS `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_price`, `product_name`, `product_description`, `product_external_id`, `product_image`, `product_active`, `product_quantity`, `product_partner_id`) VALUES
-(11, '999.00', 'Stupid product', 'Voluptas recusandae. Voluptate consequat. Expedita cillum a quia natus qui ipsum voluptatibus aspernatur.', NULL, '/assets/img/placeholder.png', 1, 100000, 0),
-(23, '734.00', 'Hamish Santiago', 'Eos, ullamco do aut consequatur velit, explicabo. Minima non laborum. Ut cumque magna qui molestiae sit, sunt accusantium facilis.', NULL, '/assets/img/placeholder.png', 1, 438, 3),
-(24, '657.00', 'Daryl Sykes', 'Omnis autem dignissimos dolor distinctio. Rerum magna nulla debitis labore molestiae deserunt vel sit nobis.', NULL, '/assets/img/placeholder.png', 1, 472, 3),
 (25, '646.00', 'Riley Saunders', 'Praesentium aut esse, harum rerum iusto assumenda non tempore, labore vero omnis recusandae. Dolore doloribus.', NULL, '/assets/img/placeholder.png', 1, 208, 3),
 (26, '530.00', 'Iona Palmer', 'Ut veniam, quia amet, dolores tempora omnis mollitia quasi iure qui deserunt et officia amet, quisquam esse.', NULL, '/assets/img/placeholder.png', 1, 496, 3),
 (27, '530.00', 'Iona Palmer', 'Ut veniam, quia amet, dolores tempora omnis mollitia quasi iure qui deserunt et officia amet, quisquam esse.', NULL, '/assets/img/placeholder.png', 1, 496, 3),

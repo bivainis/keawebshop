@@ -13,7 +13,6 @@ if(isset($_POST['email']) && isset($_POST['password'])){
 	$email = test_input($_POST['email']);
 	$password = test_input($_POST['password']);
 }
-
 function test_input($input = ''){
 
 	$input = trim($input);
@@ -50,7 +49,6 @@ if(!empty($errors)){
 
 	// hash password
 	$passHash = password_hash($password, PASSWORD_DEFAULT);
-
 
 	try {
 		$dbh = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USERNAME, DB_PASSWORD);
