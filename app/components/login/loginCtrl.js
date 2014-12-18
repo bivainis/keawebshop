@@ -24,8 +24,9 @@ shopApp.controller('loginController', ['$scope', '$rootScope', '$http', '$locati
                         $scope.errorEmail = '';
                         $scope.errorPassword = '';
                     }
+                    $rootScope.loggedIn = false;
                 } else {
-
+                    $rootScope.loggedIn = true;
                     $location.path('/home');
                 }
 
@@ -41,6 +42,7 @@ shopApp.controller('loginController', ['$scope', '$rootScope', '$http', '$locati
                 .get('api/auth/get_session.php?loggedin')
                 .success(function (response) {
                     if(response.loggedin == true){
+
                         userLoggedIn = true;
                     } else {
                         if (!next.isLogin) {
