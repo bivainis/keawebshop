@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-striped">
+                <caption>Partners</caption>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Url</th>
+                    <th>Commission</th>
+                    <th>Key</th>
+                    <th>Active</th>
+                    <th>Type</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="partner in partners">
+                    <td>{{ partner.partner_id }}</td>
+                    <td>{{ partner.partner_name }}</td>
+                    <td>{{ partner.partner_email }}</td>
+                    <td>{{ partner.partner_url }}</td>
+                    <td>{{ partner.partner_comission }}</td>
+                    <td>{{ partner.partner_key }}</td>
+                    <td>{{ partner.partner_active }}</td>
+                    <td>{{ partner.partner_type }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

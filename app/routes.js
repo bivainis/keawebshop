@@ -33,6 +33,10 @@ shopApp.config(function ($routeProvider) {
         templateUrl: 'app/components/products/edit_product.html',
         controller: 'productsController'
     });
+    $routeProvider.when('/partners/list', {
+        templateUrl: 'app/components/partners/list_partners.html',
+        controller: 'partnersController'
+    });
     $routeProvider.otherwise({
         redirectTo : '/login'
     });
