@@ -69,7 +69,7 @@ if(!empty($errors)){
 		$data['message'] = 'Success!';
 	} else {
 		$data['success'] = false;
-		$data['message'] = 'Login failed, try again';
+		$data['message'] = 'Registration failed, try again';
 	}
 }
 
