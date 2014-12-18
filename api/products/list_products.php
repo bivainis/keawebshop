@@ -12,9 +12,16 @@ try {
 	echo $e->getMessage();
 }
 
-$query = 'select * from products where product_active=1';
+if(isset($_POST['id']) && !empty($_POST['id'])){
+	$productId = $_POST['id'];
+	$query = 'select * from products where product_active=1 and product_id = :productId';
+	$stmt = $dbh->prepare($query);
+	$stmt->bindValue(':productId', $productId);
+} else {
+	$query = 'select * from products where product_active=1';
+	$stmt = $dbh->prepare($query);
+}
 
-$stmt = $dbh->prepare($query);
 $stmt->execute();
 
 $data = array();

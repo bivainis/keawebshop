@@ -1,7 +1,7 @@
 'use strict';
 
-shopApp.controller('homeController', ['$scope', '$http',
-    function($scope, $http) {
+shopApp.controller('homeController', ['$scope', '$http', '$location',
+    function($scope, $http, $location) {
 
     $scope.formData = {};
     $scope.products = {};
@@ -18,6 +18,9 @@ shopApp.controller('homeController', ['$scope', '$http',
     // add product
     $scope.processForm = function () {
 
+        $scope.products.push($scope.formData);
+
+
         $http({
             method: 'POST',
             url: 'api/products/add_product.php',
@@ -31,12 +34,17 @@ shopApp.controller('homeController', ['$scope', '$http',
 
     // delete product
     $scope.deleteProduct = function (array, index, id) {
-        console.log(id);
-        array.splice(index, 1);
+
+        array.splice(-index, 1);
+
         $http
             .delete('api/products/delete_product.php?id=' + id)
             .success(function (data) {
                 alert('deleted');
             });
     };
+
+        $scope.editProduct = function (id) {
+            $location.path('/products/edit/'+id);
+        };
 }]);

@@ -5,7 +5,14 @@ require_once '../config.php';
 
 $errors = array();
 $data = array();
-
+if(isset($_POST['product_id']) && !empty($_POST['product_id'])){
+	$productId = $_POST['product_id'];
+} else {
+	$data['success'] = false;
+	$data['message'] = 'Problem occurred';
+	echo json_encode($data);
+	die();
+}
 if (isset(
 	$_POST['product_name'],
 	$_POST['product_price'],
@@ -34,28 +41,22 @@ try {
 	echo $e->getMessage();
 }
 
-$query = 'insert into products (
-		product_name,
-		product_price,
-		product_description,
-		product_image,
-		product_quantity,
-		product_partner_id)
-	values (
-		:name,
-		:price,
-		:description,
-		:image,
-		:quantity,
-		:partnerId)';
+$query = 'update products
+		set
+			product_name = :productName,
+			product_price = :price,
+			product_description = :description,
+			product_image = :image,
+			product_quantity = :quantity
+		where product_id = :productId';
 
 $stmt = $dbh->prepare($query);
-$stmt->bindValue(':name', $name);
+$stmt->bindValue(':productName', $name);
 $stmt->bindValue(':price', $price);
 $stmt->bindValue(':description', $description);
 $stmt->bindValue(':image', $image);
 $stmt->bindValue(':quantity', $quantity);
-$stmt->bindValue(':partnerId', $_SESSION['userid']);
+$stmt->bindValue(':productId', $productId);
 $stmt->execute();
 
 if($stmt->rowCount() == 1){
