@@ -2,6 +2,7 @@
 session_start();
 
 require_once '../config.php';
+require_once '../functions.php';
 
 $errors = array();
 $data = array();
@@ -21,11 +22,6 @@ $stmt = $dbh->prepare($query);
 $stmt->bindValue(':productId', $productId);
 $stmt->execute();
 
-$data = array();
-
-while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-
-	$data[] = $row;
-}
+generateJSON($dbh);
 
 echo json_encode(array('products'=>$data));
