@@ -49,3 +49,34 @@ function generateJSON($dbh){
 	fwrite($fp, json_encode($toReturn));
 	fclose($fp);
 }
+
+function sendEmail($toEmail, $type = null){
+
+	require_once 'vendor/autoload.php';
+
+	switch ($type) {
+
+		case 'welcome':
+		$subject = 'Welcome to KEA Webshop';
+		$content = '<h2>Welcome to KEA Webshop. Happy purchasing!</h2>';
+		break;
+
+	}
+
+	$transport = \Swift_SmtpTransport::newInstance(
+		'mx1.hostinger.in',
+		2525
+	)
+	->setUserName('info@keawebshop.wc.lt')
+	->setPassword('');
+
+	$swift = \Swift_Mailer::newInstance($transport);
+
+	$message = \Swift_Message::NewInstance($subject)
+	->setFrom(['info@keawebshop.wc.lt' => 'Info from KEA Webshop'])
+	->setTo([$toEmail=>''])
+	->setBody($content, 'text/html')
+	->addPart(strip_tags($content), 'text/plain');
+
+	$swift = $swift->send($message);
+}

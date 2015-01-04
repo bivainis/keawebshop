@@ -80,7 +80,10 @@ if(!empty($errors)){
 
 		if($stmt->rowCount() == 1){
 			$data['success'] = true;
-			$data['message'] = 'Success!';
+			$data['message'] = 'Success! Check your email';
+
+			sendEmail($email, 'welcome');
+
 		} else {
 			$data['success'] = false;
 			$data['message'] = 'Registration failed, try again';
