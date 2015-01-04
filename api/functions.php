@@ -2,6 +2,15 @@
 
 require_once 'config.php';
 
+function test_input($input = ''){
+
+	$input = trim($input);
+	$input = stripslashes($input);
+	$input = htmlspecialchars($input);
+
+	return $input;
+}
+
 function generateJSON($dbh){
 	$query = 'select product_id, product_name, product_description, product_image, product_price from products';
 

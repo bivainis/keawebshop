@@ -14,6 +14,7 @@ as a **user** I can:
 - get a welcome/password confirmation email
 - login
 - logout
+- remember me
 
 as an **admin** I can:
 - add a product
@@ -36,3 +37,4 @@ as a customer I can:
 - when partner uploads link to his json, parse and add all products to db
 - activate account
 - swift mailer setup
+- user dropdown

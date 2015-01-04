@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <form class="form-signin" role="form" ng-submit="processForm()">
-        <h2 class="form-signin-heading">Register</h2>
+        <h2 class="form-signin-heading">Register a new account</h2>
 
         <p id="messages" class="alert" ng-show="message" ng-class="{'alert-success' : message}">{{ message }}</p>
 
@@ -12,10 +12,21 @@
 
         <div ng-class="{'has-error': errorPassword}">
             <label for="inputPassword" class="sr-only">Password</label>
-            <input ng-model="formData.password" type="password" id="inputPassword" class="form-control" placeholder="Password" autocomplete="off">
+            <input ng-model="formData.password" type="password" id="inputPassword" class="form-control" placeholder="Choose a password" autocomplete="off">
             <span class="help-block" ng-show="errorPassword">{{ errorPassword }}</span>
         </div>
-
+        <div class="radio">
+          <label>
+            <input ng-model="formData.userType" type="radio" name="userType" value="customer" checked>
+            I am a customer
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input ng-model="formData.userType" type="radio" name="userType" value="partner">
+            I want to sign up as a partner
+          </label>
+        </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
     </form>
 </div>

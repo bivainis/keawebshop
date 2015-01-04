@@ -3,23 +3,18 @@
 // todo: hash password
 
 require_once '../config.php';
+require_once '../functions.php';
+
 
 $errors = array();
 $data = array();
 
 $email = $password = '';
 
-if(isset($_POST['email']) && isset($_POST['password'])){
+if(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['userType'])){
 	$email = test_input($_POST['email']);
 	$password = test_input($_POST['password']);
-}
-function test_input($input = ''){
-
-	$input = trim($input);
-	$input = stripslashes($input);
-	$input = htmlspecialchars($input);
-
-	return $input;
+	$userType = test_input($_POST['userType']);
 }
 
 // validate and set errors
@@ -56,18 +51,40 @@ if(!empty($errors)){
 		echo $e->getMessage();
 	}
 
-	$query = 'insert into partners (partner_email, partner_password) values (:partnerEmail, :password)';
+
+	if($userType == 'partner'){
+		$query = 'select partner_email from partners where partner_email = :email';
+	} else if($userType == 'customer'){
+		$query = 'select customer_email from customers where customer_email = :email';
+	}
+
 	$stmt = $dbh->prepare($query);
-	$stmt->bindValue(':partnerEmail', $email);
-	$stmt->bindValue(':password', $passHash);
+	$stmt->bindValue(':email', $email);
 	$stmt->execute();
 
-	if($stmt->rowCount() == 1){
-		$data['success'] = true;
-		$data['message'] = 'Success!';
-	} else {
+	if($stmt->rowCount() > 0){
 		$data['success'] = false;
-		$data['message'] = 'Registration failed, try again';
+		$data['message'] = 'Email already exists';
+	} else {
+
+		if($userType == 'partner'){
+			$query = 'insert into partners (partner_email, partner_password) values (:email, :password)';
+		} elseif($userType == 'customer'){
+			$query = 'insert into customers (customer_email, customer_password) values (:email, :password)';
+		}
+
+		$stmt = $dbh->prepare($query);
+		$stmt->bindValue(':email', $email);
+		$stmt->bindValue(':password', $passHash);
+		$stmt->execute();
+
+		if($stmt->rowCount() == 1){
+			$data['success'] = true;
+			$data['message'] = 'Success!';
+		} else {
+			$data['success'] = false;
+			$data['message'] = 'Registration failed, try again';
+		}
 	}
 }
 
