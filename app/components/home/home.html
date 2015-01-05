@@ -28,47 +28,5 @@
     </nav>
     <hr/>
 </div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-4">
-            <form role="form" ng-submit="processForm()">
-                <h2>Add product to the store</h2>
-                <div class="form-group">
-                    <input ng-model="formData.product_price" type="text" name="product_price" class="form-control" placeholder="Enter price in DKK">
-                </div>
-                <div class="form-group">
-                    <input ng-model="formData.product_name" type="text" name="product_name" class="form-control" placeholder="Product name">
-                </div>
-                <div class="form-group">
-                    <input ng-model="formData.product_image" type="text" name="image_url" class="form-control" placeholder="Image link">
-                </div>
-                <div class="form-group">
-                    <textarea ng-model="formData.product_description" name="product_description" class="form-control" placeholder="Description"></textarea>
-                </div>
-                <div class="form-group">
-                    <input ng-model="formData.product_quantity" name="product_quantity" class="form-control" placeholder="Quantity">
-                </div>
-                <button class="btn btn-lg btn-primary">Add product</button>
-            </form>
-        </div>
-        <div class="col-sm-8">
-            <div class="row">
-                <div class="col-sm-4 clearfix" ng-repeat="product in products">
-                    <img ng-src="{{ product.product_image }}" class="img-responsive" alt=""/>
-                    <h3>{{ product.product_name }}</h3>
-                    <p class="small">{{ product.product_description }}</p>
-                    <p>Price: {{ product.product_price }}DKK</p>
-                    <p>In stock: {{ product.product_quantity }}</p>
-                    <div class="clearfix">
-                        <button class="btn btn-primary pull-right">BUY</button>
-                        <div class="btn-group btn-group-xs pull-left" role="group" aria-label="Extra-small button group">
-                            <button type="button" class="btn btn-default" ng-click="editProduct(product.product_id)">Edit</button>
-                            <button type="button" class="btn btn-danger" ng-click="deleteProduct(products, $index, product.product_id)">Delete</button>
-                        </div>
-                    </div>
-                    <hr/>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+<div ng-include src="'/app/components/products/list_products.html'"></div>

@@ -15,23 +15,6 @@ shopApp.controller('homeController', ['$scope', '$http', '$location',
         $scope.products = response.products; //change here
     });
 
-    // add product
-    $scope.processForm = function () {
-
-        $scope.products.push($scope.formData);
-
-
-        $http({
-            method: 'POST',
-            url: 'api/products/add_product.php',
-            data: $.param($scope.formData),  // pass in data as strings
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}  // set the headers so angular passing info as form data (not request payload)
-
-        }).success(function (data) {
-            console.log(data);
-        });
-    };
-
     // delete product
     $scope.deleteProduct = function (array, index, id) {
 

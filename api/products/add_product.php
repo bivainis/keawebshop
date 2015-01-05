@@ -20,15 +20,6 @@ if (isset(
 	$image = test_input($_POST['product_image']) ? test_input($_POST['product_image']) : '/assets/img/placeholder.png';
 }
 
-function test_input($input = ''){
-
-	$input = trim($input);
-	$input = stripslashes($input);
-	$input = htmlspecialchars($input);
-
-	return $input;
-}
-
 try {
 	$dbh = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USERNAME, DB_PASSWORD);
 } catch(PDOException $e) {

@@ -29,6 +29,10 @@ shopApp.config(function ($routeProvider) {
         templateUrl: 'app/components/accounts/account_deleted.html',
         controller: 'accountsController'
     });
+    $routeProvider.when('/products/add', {
+      templateUrl: 'app/components/products/add_product.html',
+      controller: 'productsController'
+    });
     $routeProvider.when('/products/edit/:productId', {
         templateUrl: 'app/components/products/edit_product.html',
         controller: 'productsController'

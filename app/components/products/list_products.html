@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-sm-3 clearfix" ng-repeat="product in products">
+                    <img ng-src="{{ product.product_image }}" class="img-responsive" alt="" />
+                    <h3>{{ product.product_name }}</h3>
+                    <p class="small">{{ product.product_description }}</p>
+                    <p>Price: {{ product.product_price }}DKK</p>
+                    <p>In stock: {{ product.product_quantity }}</p>
+                    <div class="clearfix">
+                        <button class="btn btn-primary pull-right">BUY</button>
+                        <div class="btn-group btn-group-xs pull-left" role="group" aria-label="Extra-small button group">
+                            <button type="button" class="btn btn-default" ng-click="editProduct(product.product_id)">Edit</button>
+                            <button type="button" class="btn btn-danger" ng-click="deleteProduct(products, $index, product.product_id)">Delete</button>
+                        </div>
+                    </div>
+                    <hr/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
