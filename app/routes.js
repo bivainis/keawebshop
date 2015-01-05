@@ -41,6 +41,10 @@ shopApp.config(function ($routeProvider) {
         templateUrl: 'app/components/partners/list_partners.html',
         controller: 'partnersController'
     });
+    $routeProvider.when('/orders/add/:productId', {
+      templateUrl: 'app/components/orders/add_order.html',
+      controller: 'productsController'
+    });
     $routeProvider.otherwise({
         redirectTo : '/login'
     });

@@ -5,6 +5,7 @@ shopApp.controller('productsController', ['$scope', '$http','$routeParams',
 
         var productId = $routeParams.productId;
         $scope.formData = {};
+        $scope.addOrderData = {};
 
         // add product
         $scope.processForm = function () {
@@ -26,9 +27,6 @@ shopApp.controller('productsController', ['$scope', '$http','$routeParams',
         // add product
         $scope.processFormAdd = function () {
 
-          //$scope.products.push($scope.formData);
-
-
           $http({
             method: 'POST',
             url: 'api/products/add_product.php',
@@ -38,6 +36,20 @@ shopApp.controller('productsController', ['$scope', '$http','$routeParams',
           }).success(function (data) {
             $scope.message = data.message;
             $scope.formData = {};
+          });
+        };
+
+        $scope.processFormAddOrder = function () {
+
+          $http({
+            method: 'POST',
+            url: 'api/orders/add_order.php',
+            data: $.param($scope.addOrderData),  // pass in data as strings
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}  // set the headers so angular passing info as form data (not request payload)
+
+          }).success(function (data) {
+            $scope.message = data.message;
+            $scope.addOrderData = {};
           });
         };
 
