@@ -10,9 +10,9 @@ Specs
 ----------
 
 as a **user** I can:
-- sign up
-- get a welcome/password confirmation email
-- login
++ sign up
++ get a welcome/password confirmation email
++ login
 - logout
 - remember me
 

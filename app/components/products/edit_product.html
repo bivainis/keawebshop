@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-sm-4">
             <form role="form" ng-submit="processForm()">
-                <h2>Edit your product</h2>
-
+                <h2>Edit your product..</h2>
+                <p id="messages" class="alert" ng-show="message" ng-class="{'alert-warning' : message}">{{ message }}</p>
                 <div class="form-group">
                     <input ng-model="formData.product_price" type="text" name="product_price" class="form-control"
                            placeholder="Enter price in DKK">

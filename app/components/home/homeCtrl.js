@@ -44,7 +44,7 @@ shopApp.controller('homeController', ['$scope', '$http', '$location',
             });
     };
 
-        $scope.editProduct = function (id) {
-            $location.path('/products/edit/'+id);
-        };
+      $scope.editProduct = function (id) {
+          $location.path('/products/edit/'+id);
+      };
 }]);

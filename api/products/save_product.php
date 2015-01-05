@@ -61,12 +61,12 @@ $stmt->execute();
 
 if($stmt->rowCount() == 1){
 	$data['success'] = true;
-	$data['message'] = 'Success!';
+	$data['message'] = 'Product information updated';
 
 	generateJSON($dbh);
 } else {
 	$data['success'] = false;
-	$data['message'] = 'Product adding failed, please try again';
+	$data['message'] = 'Product save failed, please try again';
 }
 
 function generateJSON($dbh){
