@@ -7,9 +7,10 @@ $data = array();
 
 $email = $password = '';
 
-if(isset($_POST['email']) && isset($_POST['password'])){
+if(isset($_POST['email']) && isset($_POST['password']) && isset($_POST['userType'])){
 	$email = test_input($_POST['email']);
 	$password = test_input($_POST['password']);
+	$userType = test_input($_POST['userType']);
 }
 
 function test_input($input = ''){
@@ -34,6 +35,10 @@ if(strlen($password) < 6){
 if(empty($password)){
 	$errors['password'] = 'Password is required';
 }
+if(empty($userType)){
+	$errors['userType'] = 'You must to choose login type';
+}
+
 
 // store errors
 if(!empty($errors)){
@@ -52,16 +57,27 @@ if(!empty($errors)){
 		echo $e->getMessage();
 	}
 
-	$query = 'select * from partners where partner_email=:partnerEmail';
+	if($userType == 'partner'){
+		$query = 'select * from partners where partner_email=:email';
+	} elseif ($userType == 'customer') {
+		$query = 'select * from customers where customer_email=:email';
+	}
+
 	$stmt = $dbh->prepare($query);
-	$stmt->bindValue(':partnerEmail', $email);
+	$stmt->bindValue(':email', $email);
 	$stmt->execute();
 
 	if($stmt->rowCount() == 1){
 
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-		$hash = $row['partner_password'];
+		$hash = '';
+
+		if($userType == 'partner'){
+			$hash = $row['partner_password'];
+		} elseif ($userType == 'customer') {
+			$hash = $row['customer_password'];
+		}
 
 		if (password_verify($password, $hash)) {
 
@@ -69,7 +85,15 @@ if(!empty($errors)){
 			$data['message'] = 'Success!';
 			session_start();
 			$_SESSION['loggedin'] = true;
-			$_SESSION['userid'] = $row['partner_id'];
+
+			// set user role in the session
+			if($userType == 'partner'){
+				$_SESSION['userid'] = $row['partner_id'];
+				$_SESSION['user_role'] = $row['partner_type']; // 0 partner, 1 admin
+			} elseif ($userType == 'customer') {
+				$_SESSION['userid'] = $row['customer_id'];
+				$_SESSION['user_role'] = 2; // customer
+			}
 
 		} else {
 			$data['success'] = false;

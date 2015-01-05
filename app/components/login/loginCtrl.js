@@ -20,9 +20,11 @@ shopApp.controller('loginController', ['$scope', '$rootScope', '$http', '$locati
 
                         $scope.errorEmail = data.errors.email;
                         $scope.errorPassword = data.errors.password;
+                        $scope.errorUserType = data.errors.userType;
                     } else {
                         $scope.errorEmail = '';
                         $scope.errorPassword = '';
+                        $scope.errorUserType = '';
                     }
                     $rootScope.loggedIn = false;
                 } else {

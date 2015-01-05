@@ -1,4 +1,5 @@
 <div class="container-fluid">
+
     <form class="form-signin" role="form" ng-submit="processForm()">
         <h2 class="form-signin-heading">Please log in to access the store</h2>
 
@@ -16,11 +17,22 @@
             <span class="help-block" ng-show="errorPassword">{{ errorPassword }}</span>
         </div>
 
-        <!-- <div class="checkbox">
+        <div ng-class="{'has-error': errorPassword}">
+
+        <div class="radio">
             <label>
-                <input type="checkbox" value="remember-me"> Remember me
+                <input ng-model="formData.userType" type="radio" name="userType" value="customer" checked>
+                I am a customer
             </label>
-        </div> -->
+        </div>
+        <div class="radio">
+            <label>
+                <input ng-model="formData.userType" type="radio" name="userType" value="partner">
+                I am a partner or admin
+            </label>
+        </div>
+            <span class="help-block" ng-show="errorPassword">{{ errorUserType }}</span>
+            </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         <a href="#register">Register</a>
     </form>
